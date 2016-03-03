@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
 using namespace std;
+
 bool decode() {
     while (true) {
         system("cls");
@@ -22,14 +22,51 @@ bool decode() {
 string getInputString();
 string deleteSpaces(string str);
 
-/* ENCODING PART */
+int getKey() {
+    int key;
+    cout << "Enter the key: " << endl << " > ";
+    cin >> key;
+    return key;   
+}
 
+string encode(string str, int key);
+
+/* ENCODING PART */
 // General encoding method.
 void encoding() {
     string str = getInputString();
-    cout << ":" << str << endl;
+    int key = getKey();
+    cout << "user string:" << str << endl;
     str = deleteSpaces(str);
-    cout << ":" << str << endl;
+    cout << " new string:" << str << endl;
+    str = encode(str, key);
+    // ...
+}
+
+string encode(string str, int key) {
+       string cryptogram = str;
+       int size = cryptogram.size();
+       
+       char arr[key][size];
+       for (int i = 0; i < key; i++) {
+           for (int j = 0; j < size; j++) {
+              arr[i][j] = ' ';
+           }
+       }
+       for (int i = 0; i < size; i++) {
+           for (int j = 0; j < key; j++) {
+               // ???????????????????????
+               arr[key - (i % key)][j] = cryptogram.at(i);
+           }
+       }
+       
+       int iterator = key;
+       for (int i = 0; i < size; i++) {
+           arr[i][iterator] = cryptogram.at(i);
+           
+       }
+       
+       return cryptogram;
 }
 
 // Getting some string.
@@ -52,17 +89,17 @@ string deleteSpaces(string str) {
             vec.push_back(str.at(i));
         }
     }
+
     string newString(vec.begin(), vec.end());
     return newString;
 }
 
-int main()
-{
+int main() {
     if (!decode()) {
         encoding();
     } else {
         //decoding();
     }
+    system("pause");
     return 0;
 }
-
