@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
-
 using namespace std;
 
+<<<<<<< HEAD
 /* Global variables that are needed for output. */
 int _KEY;
 string _CRYPTOGRAM;
@@ -64,6 +64,11 @@ int main() {
 // @return choise - boolean value.
 bool needToDecode() {
     while (true) {
+=======
+bool decode() {
+    while (true) {
+        //system("clear");
+>>>>>>> origin/master
         char choise;
         cout << "Please choose what to do:" << endl <<
                 " enter '0' - if you want to encode some word" << endl <<
@@ -77,6 +82,7 @@ bool needToDecode() {
     }
 }
 
+<<<<<<< HEAD
 // Main encoding method.
 // @return str - encoded string (cryptogram)
 void encoding() {
@@ -84,6 +90,66 @@ void encoding() {
     _KEY = getKey();
     _ORIGINAL_TEXT = deleteSpaces(_ORIGINAL_TEXT);
     _CRYPTOGRAM = encode(_ORIGINAL_TEXT, _KEY);
+=======
+string getInputString();
+string deleteSpaces(string str);
+
+int getKey() {
+    int key;
+    cout << "Enter the key: " << endl << " > ";
+    cin >> key;
+    return key;
+}
+
+string encode(string str, int key);
+
+/* ENCODING PART */
+// General encoding method.
+void encoding() {
+    string str = getInputString();
+    int key = getKey();
+    cout << "user string:" << str << endl;
+    str = deleteSpaces(str);
+    cout << " new string:" << str << endl;
+    str = encode(str, key);
+    // ...
+}
+
+string encode(string str, int key) {
+       string cryptogram = str;
+       int size = cryptogram.size();
+
+       // declare array
+       char arr[key][size];
+       for (int i = 0; i < key; i++) {
+           for (int j = 0; j < size; j++) {
+              arr[i][j] = ' ';
+           }
+       }
+
+       // fill array
+       int row = key-1;
+       bool switcher = false;
+       for (int i = 0; i < size; i++) {
+           //arr[key - (i % key) - 1][i] = cryptogram.at(i);
+           arr[row][i] = cryptogram.at(i);
+
+           if ( (key + row > key-1) && (row < 1) ) {
+              switcher = !switcher;
+           }
+           switcher ? row++ : row--;
+       }
+
+       // print array
+       for (int i = 0; i < key; i++) {
+           for (int j = 0; j < size; j++) {
+               cout << " " << arr[i][j] << "";
+           }
+           cout << endl;
+       }
+    cin;
+       return cryptogram;
+>>>>>>> origin/master
 }
 
 // Getting some string.
@@ -120,6 +186,7 @@ string deleteSpaces(string str) {
     return newString;
 }
 
+<<<<<<< HEAD
 // General encoding method.
 // @param str - a string that need to encode.
 // @param key - a key that need to use to encode.
@@ -325,3 +392,14 @@ void printResult(string originalString, int key, string cryptogram) {
             " Cryptogram is: [ " << cryptogram << " ]" << endl <<
             " Key = " << key << endl << endl;
 }
+=======
+int main() {
+    if (!decode()) {
+        encoding();
+    } else {
+        //decoding();
+    }
+    //system("pause");
+    return 0;
+}
+>>>>>>> origin/master
