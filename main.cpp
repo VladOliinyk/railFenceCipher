@@ -5,7 +5,7 @@ using namespace std;
 
 bool decode() {
     while (true) {
-        system("cls");
+        //system("clear");
         char choise;
         cout << "Please choose what to do:" << endl <<
                 " enter '0' - if you want to encode some word" << endl <<
@@ -26,7 +26,7 @@ int getKey() {
     int key;
     cout << "Enter the key: " << endl << " > ";
     cin >> key;
-    return key;   
+    return key;
 }
 
 string encode(string str, int key);
@@ -46,26 +46,37 @@ void encoding() {
 string encode(string str, int key) {
        string cryptogram = str;
        int size = cryptogram.size();
-       
+
+       // declare array
        char arr[key][size];
        for (int i = 0; i < key; i++) {
            for (int j = 0; j < size; j++) {
               arr[i][j] = ' ';
            }
        }
+
+       // fill array
+       int row = key;
+       bool switcher = 0;
        for (int i = 0; i < size; i++) {
-           for (int j = 0; j < key; j++) {
-               // ???????????????????????
-               arr[key - (i % key)][j] = cryptogram.at(i);
+           //arr[key - (i % key) - 1][i] = cryptogram.at(i);
+           arr[row][i] = cryptogram.at(i);
+           if ((row == key) && (row == 0)) {
+             switcher = true;
+           } else {
+             switcher = false;
            }
+           switcher ? row++ : row--;
        }
-       
-       int iterator = key;
-       for (int i = 0; i < size; i++) {
-           arr[i][iterator] = cryptogram.at(i);
-           
+
+       // print array
+       for (int i = 0; i < key; i++) {
+           for (int j = 0; j < size; j++) {
+               cout << " " << arr[i][j] << " ";
+           }
+           cout << endl;
        }
-       
+    cin;
        return cryptogram;
 }
 
@@ -100,6 +111,6 @@ int main() {
     } else {
         //decoding();
     }
-    system("pause");
+    //system("pause");
     return 0;
 }
