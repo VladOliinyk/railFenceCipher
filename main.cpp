@@ -4,6 +4,7 @@
 using namespace std;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Global variables that are needed for output. */
 int _KEY;
 string _CRYPTOGRAM;
@@ -69,6 +70,11 @@ bool decode() {
     while (true) {
         //system("clear");
 >>>>>>> origin/master
+=======
+bool decode() {
+    while (true) {
+        //system("clear");
+>>>>>>> origin/master
         char choise;
         cout << "Please choose what to do:" << endl <<
                 " enter '0' - if you want to encode some word" << endl <<
@@ -100,9 +106,15 @@ int getKey() {
     cin >> key;
     return key;
 }
+<<<<<<< HEAD
 
 string encode(string str, int key);
 
+=======
+
+string encode(string str, int key);
+
+>>>>>>> origin/master
 /* ENCODING PART */
 // General encoding method.
 void encoding() {
@@ -149,6 +161,9 @@ string encode(string str, int key) {
        }
     cin;
        return cryptogram;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 }
 
@@ -186,6 +201,7 @@ string deleteSpaces(string str) {
     return newString;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // General encoding method.
 // @param str - a string that need to encode.
@@ -393,6 +409,8 @@ void printResult(string originalString, int key, string cryptogram) {
             " Key = " << key << endl << endl;
 }
 =======
+=======
+>>>>>>> origin/master
 int main() {
     if (!decode()) {
         encoding();
@@ -402,4 +420,7 @@ int main() {
     //system("pause");
     return 0;
 }
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
