@@ -56,15 +56,14 @@ string encode(string str, int key) {
        }
 
        // fill array
-       int row = key;
-       bool switcher = 0;
+       int row = key-1;
+       bool switcher = false;
        for (int i = 0; i < size; i++) {
            //arr[key - (i % key) - 1][i] = cryptogram.at(i);
            arr[row][i] = cryptogram.at(i);
-           if ((row == key) && (row == 0)) {
-             switcher = true;
-           } else {
-             switcher = false;
+
+           if ( (key + row > key-1) && (row < 1) ) {
+              switcher = !switcher;
            }
            switcher ? row++ : row--;
        }
@@ -72,7 +71,7 @@ string encode(string str, int key) {
        // print array
        for (int i = 0; i < key; i++) {
            for (int j = 0; j < size; j++) {
-               cout << " " << arr[i][j] << " ";
+               cout << " " << arr[i][j] << "";
            }
            cout << endl;
        }
